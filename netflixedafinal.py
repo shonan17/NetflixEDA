@@ -134,6 +134,3 @@ fig, ax = plt.subplots()
 sns.countplot(y=df['rating'], hue=df['type'], order=df['rating'].value_counts().index, palette="coolwarm", ax=ax)
 ax.set_title("Content Ratings by Type")
 st.pyplot(fig)
-
-st.write("Data Preview:")
-st.dataframe(df.head())
