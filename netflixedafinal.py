@@ -104,14 +104,6 @@ sns.histplot(tv_shows['season_count'].dropna(), bins=15, kde=True, color="purple
 ax.set_title("Most Common Number of Seasons")
 st.pyplot(fig)
 
-# Top 10 Longest TV Shows
-st.subheader("Top 10 Longest TV Shows")
-longest_tv_shows = tv_shows.nlargest(10, 'season_count')
-fig, ax = plt.subplots()
-sns.barplot(y=longest_tv_shows['title'], x=longest_tv_shows['season_count'], palette="Reds_r", ax=ax)
-ax.set_title("Top 10 Longest TV Shows")
-st.pyplot(fig)
-
 # Top 10 Actors with Most Appearances
 st.subheader("Top 10 Actors with Most Appearances")
 top_celebrities = df[df['cast'] != "Unknown"]['cast'].str.split(", ").explode().value_counts().head(10)
@@ -121,7 +113,7 @@ ax.set_title("Top 10 Actors on Netflix")
 st.pyplot(fig)
 
 # TV Shows by Country
-st.subheader("Top 10 Countries with Most TV Shows")
+st.subheader("Top 10 Countries with Most TV Shows (Excluding Unknown)")
 tv_shows_by_country = df[(df['type'] == "TV Show") & (df['country'] != "Unknown")]['country'].value_counts().head(10)
 fig, ax = plt.subplots()
 sns.barplot(y=tv_shows_by_country.index, x=tv_shows_by_country.values, palette="viridis", ax=ax)
@@ -133,4 +125,12 @@ st.subheader("Distribution of Content Ratings by Type (Movie vs. TV Show)")
 fig, ax = plt.subplots()
 sns.countplot(y=df['rating'], hue=df['type'], order=df['rating'].value_counts().index, palette="coolwarm", ax=ax)
 ax.set_title("Content Ratings by Type")
+st.pyplot(fig)
+
+# Top 10 Longest TV Shows
+st.subheader("Top 10 Longest TV Shows")
+longest_tv_shows = tv_shows.nlargest(10, 'season_count')
+fig, ax = plt.subplots()
+sns.barplot(y=longest_tv_shows['title'], x=longest_tv_shows['season_count'], palette="Reds_r", ax=ax)
+ax.set_title("Top 10 Longest TV Shows")
 st.pyplot(fig)
