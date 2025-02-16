@@ -120,6 +120,14 @@ sns.barplot(y=tv_shows_by_country.index, x=tv_shows_by_country.values, palette="
 ax.set_title("Top 10 Countries with Most TV Shows")
 st.pyplot(fig)
 
+# Movies by Country
+st.subheader("Top 10 Countries with the Most Movies on Netflix (Excluding Unknown)")
+movies_by_country = df[(df['type'] == "Movie") & (df['country'] != "Unknown")]['country'].value_counts().head(10)
+fig, ax = plt.subplots()
+sns.barplot(y=movies_by_country.index, x=movies_by_country.values, palette="viridis", ax=ax)
+ax.set_title("Top 10 Countries with the Most Movies")
+st.pyplot(fig)
+
 # Content Ratings by Type
 st.subheader("Distribution of Content Ratings by Type (Movie vs. TV Show)")
 fig, ax = plt.subplots()
