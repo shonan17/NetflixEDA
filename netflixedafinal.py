@@ -7,9 +7,9 @@ import seaborn as sns
 st.title("Netflix EDA Dashboard")
 
 # Load Data
-df = pd.read_csv('netflix_titles.csv')
-df.fillna("Unknown", inplace=True)
-df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
+df = pd.read_csv('netflix_titles.csv')  #loads the file
+df.fillna("Unknown", inplace=True)  #fills the blank space with unknown
+df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')  #changes the date 
 
 # Movies vs TV Shows
 st.subheader("Movies vs. TV Shows")
